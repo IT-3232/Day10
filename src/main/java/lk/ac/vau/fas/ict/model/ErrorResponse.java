@@ -1,36 +1,30 @@
-package lk.vau.fas.ict.model;
+package lk.ac.vau.fas.ict.model;
 
 public class ErrorResponse {
-	private int statusCode;
-	private String errorMessage;
-	
-	public ErrorResponse() {
-	
-	}
+    private int statusCode;
+    private String message;
 
-	public ErrorResponse(int statusCode, String errorMessage) {
-		super();
-		this.statusCode = statusCode;
-		this.errorMessage = errorMessage;
-	}
+    public ErrorResponse() {}
 
-	public int getStatusCode() {
-		return statusCode;
-	}
+    public ErrorResponse(int statusCode, String message) {
+        this.statusCode = statusCode;
+        this.message = message;
+    }
 
-	public void setStatusCode(int statusCode) {
-		this.statusCode = statusCode;
-	}
+    // Getters and setters
+    public int getStatusCode() {
+        return statusCode;
+    }
 
-	public String getErrorMessage() {
-		return errorMessage;
-	}
+    public void setStatusCode(int statusCode) {
+        this.statusCode = statusCode;
+    }
 
-	public void setErrorMessage(String errorMessage) {
-		this.errorMessage = errorMessage;
-	}
-	
-	
-	
-	
+    public String getMessage() {
+        return message;
+    }
+
+    public void setMessage(String message) {
+        this.message = message;
+    }
 }

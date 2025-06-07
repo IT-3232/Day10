@@ -1,80 +1,53 @@
-package lk.vau.fas.ict.model;
+package lk.ac.vau.fas.ict.model;
 
-import java.util.Date;
+import java.util.List;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
-
-import jakarta.persistence.*;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+import jakarta.persistence.ManyToMany;
+import jakarta.persistence.ManyToOne;
 
 @Entity
 public class Employee {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long EmpId;
-    private String EmpName;
-    private String Job;
-    private double Salary;
-    private Date DOB;
-
-    @ManyToOne
-    @JsonBackReference
-    private Department department;
-    public Employee() {}
-
-    public Employee(Long empId, String empName, String job, double salary, Department department, Date dOB) {
-        this.EmpId = empId;
-        this.EmpName = empName;
-        this.Job = job;
-        this.Salary = salary;
-        this.department = department;
-        this.DOB = dOB;
-    }
-
-    public Long getEmpId() {
-        return EmpId;
-    }
-
-    public void setEmpId(Long empId) {
-        this.EmpId = empId;
-    }
-
-    public String getEmpName() {
-        return EmpName;
-    }
-
-    public void setEmpName(String empName) {
-        this.EmpName = empName;
-    }
-
-    public String getJob() {
-        return Job;
-    }
-
-    public void setJob(String job) {
-        this.Job = job;
-    }
-
-    public double getSalary() {
-        return Salary;
-    }
-
-    public void setSalary(double salary) {
-        this.Salary = salary;
-    }
-
-    public Department getDepartment() {
-        return department;
-    }
-
-    public void setDepartment(Department department) {
-        this.department = department;
-    }
-
-    public Date getDOB() {
-        return DOB;
-    }
-
-    public void setDOB(Date dOB) {
-        this.DOB = dOB;
-    }
+	@Id
+	private String empNo;
+	private double salary;
+	@ManyToOne
+	private Department department;
+	@ManyToMany(mappedBy = "employees")
+	private List<Project>projects;
+	public Employee(String empNo, double salary, Department department, List<Project> projects) {
+		super();
+		this.empNo = empNo;
+		this.salary = salary;
+		this.department = department;
+		this.projects = projects;
+	}
+	public Employee() {
+		super();
+	}
+	public String getEmpNo() {
+		return empNo;
+	}
+	public void setEmpNo(String empNo) {
+		this.empNo = empNo;
+	}
+	public double getSalary() {
+		return salary;
+	}
+	public void setSalary(double salary) {
+		this.salary = salary;
+	}
+	public Department getDepartment() {
+		return department;
+	}
+	public void setDepartment(Department department) {
+		this.department = department;
+	}
+	public List<Project> getProjects() {
+		return projects;
+	}
+	public void setProjects(List<Project> projects) {
+		this.projects = projects;
+	}
 }

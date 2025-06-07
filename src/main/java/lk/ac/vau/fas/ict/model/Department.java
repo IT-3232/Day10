@@ -1,75 +1,69 @@
-package lk.vau.fas.ict.model;
+package lk.ac.vau.fas.ict.model;
 
+import java.util.Date;
 import java.util.List;
 
-import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
 
-@Entity(name = "department")
+@Entity
 public class Department {
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long DepId;
-	private String DName;
 
-	@OneToMany(mappedBy = "department")
-	@JsonManagedReference
-	private List<Employee> employees;
+    @Id
+    @Column(name = "dept_id")
+    private int id;
 
-	private String Location;
+    @Column(nullable = false)
+    private String name;
 
-	public Department() {
-	}
+    private Date established;
 
-	public Department(Long DepId, String DName, String Location) {
-		this.DepId = DepId;
-		this.DName = DName;
-		this.Location = Location;
-	}
+    @JsonIgnore
+    @OneToMany(mappedBy = "department")
+    private List<Employee> employees;
 
-	public Department(Long DepId, String DName, List<Employee> employees, String location) {
-		super();
-		this.DepId = DepId;
-		this.DName = DName;
-		this.employees = employees;
-		this.Location = location;
-	}
+    public Department() {
+    }
 
-	public Long getDepId() {
-		return DepId;
-	}
+    public Department(int id, String name, Date established) {
+        this.id = id;
+        this.name = name;
+        this.established = established;
+    }
 
-	public void setDepId(Long DepId) {
-		this.DepId = DepId;
-	}
+    public int getId() {
+        return id;
+    }
 
-	public String getDName() {
-		return DName;
-	}
+    public void setId(int id) {
+        this.id = id;
+    }
 
-	public void setDName(String DName) {
-		this.DName = DName;
-	}
+    public String getName() {
+        return name;
+    }
 
-	public List<Employee> getEmployees() {
-		return employees;
-	}
+    public void setName(String name) {
+        this.name = name;
+    }
 
-	public void setEmployees(List<Employee> employees) {
-		this.employees = employees;
-	}
+    public Date getEstablished() {
+        return established;
+    }
 
-	public String getLocation() {
-		return Location;
-	}
+    public void setEstablished(Date established) {
+        this.established = established;
+    }
 
-	public void setLocation(String Location) {
-		this.Location = Location;
-	}
+    public List<Employee> getEmployees() {
+        return employees;
+    }
 
+    public void setEmployees(List<Employee> employees) {
+        this.employees = employees;
+    }
 }
